@@ -22,6 +22,6 @@
     "function-subnets"      : "subnet-001e3983a9fe5576a,subnet-002500af93aa39ce5",
     "function-security-groups" : "sg-0bbd7d38acdd3dc18",
     "tracing-mode"             : "PassThrough",
-    "environment-variables"    : "",
+    "environment-variables"    : "\"S3_Bucket_Name\"=\"esc-04-mail-template\";\"S3_File_Name\"=\"tx_esc_04NotificationServices.xml\"",
     "image-tag"                : ""
 }
