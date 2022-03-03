@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC4-WS", "ESC4-WS\ESC4-WS.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC4-SQStoLambda", "ESC4-SQStoLambda\ESC4-SQStoLambda.csproj", "{78DD48BF-78E1-4FE7-8ECC-CE4C559877C4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC4-SES-Service", "ESC4-SES-Service\ESC4-SES-Service.csproj", "{2BEB1377-C8E0-42F1-BB51-00A28EEADAB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC4-SQStoLambdatoSES", "ESC4-SQStoLambdatoSES\ESC4-SQStoLambdatoSES.csproj", "{475637E8-0AEF-48F2-A152-0304E2384269}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{78DD48BF-78E1-4FE7-8ECC-CE4C559877C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78DD48BF-78E1-4FE7-8ECC-CE4C559877C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78DD48BF-78E1-4FE7-8ECC-CE4C559877C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEB1377-C8E0-42F1-BB51-00A28EEADAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BEB1377-C8E0-42F1-BB51-00A28EEADAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BEB1377-C8E0-42F1-BB51-00A28EEADAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BEB1377-C8E0-42F1-BB51-00A28EEADAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475637E8-0AEF-48F2-A152-0304E2384269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475637E8-0AEF-48F2-A152-0304E2384269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475637E8-0AEF-48F2-A152-0304E2384269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475637E8-0AEF-48F2-A152-0304E2384269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

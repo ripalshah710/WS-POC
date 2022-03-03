@@ -1,0 +1,27 @@
+
+{
+    "Information" : [
+        "This file provides default values for the deployment wizard inside Visual Studio and the AWS Lambda commands added to the .NET Core CLI.",
+        "To learn more about the Lambda commands with the .NET Core CLI execute the following command at the command line in the project root directory.",
+        "dotnet lambda help",
+        "All the command line options for the Lambda command can be specified in this file."
+    ],
+    "profile"     : "default",
+    "region"      : "us-east-1",
+    "configuration" : "Release",
+    "framework"     : "netcoreapp3.1",
+    "function-runtime" : "dotnetcore3.1",
+    "function-memory-size" : 128,
+    "function-timeout"     : 60,
+    "function-handler"     : "ESC4-SQStoLambdatoSES::ESC4_SQStoLambdatoSES.Function::FunctionHandler",
+    "function-name"        : "SQS-Lambda-SES",
+    "function-description" : "Lambda will trigger from SQS events and send email using SES lambda",
+    "package-type"         : "Zip",
+    "function-role"        : "arn:aws:iam::471808368523:role/service-role/test2-lambda-role-dlnort4p",
+    "function-architecture" : "x86_64",
+    "function-subnets"      : "subnet-001e3983a9fe5576a,subnet-002500af93aa39ce5",
+    "function-security-groups" : "sg-0bbd7d38acdd3dc18",
+    "tracing-mode"             : "PassThrough",
+    "environment-variables"    : "\"S3_Bucket_Name\"=\"esc-04-mail-template\";\"S3_File_Name\"=\"tx_esc_04NotificationServices.xml\"",
+    "image-tag"                : ""
+}
