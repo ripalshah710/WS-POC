@@ -130,7 +130,7 @@ namespace ESC4_SQStoLambda
         {
             get
             {
-                return Environment.GetEnvironmentVariable("S3_Bucket_Name");
+                return Environment.GetEnvironmentVariable("S3_Bucket_Name") ?? "esc-04-mail-template";
             }
         }
 
@@ -138,7 +138,7 @@ namespace ESC4_SQStoLambda
         {
             get
             {
-                return Environment.GetEnvironmentVariable("S3_File_Name");
+                return Environment.GetEnvironmentVariable("S3_File_Name") ?? "tx_esc_04NotificationServices.xml";
             }
         }
     }

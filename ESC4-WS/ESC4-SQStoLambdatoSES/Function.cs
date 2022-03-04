@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -49,9 +51,41 @@ namespace ESC4_SQStoLambdatoSES
             if (evnt.Records.Count > 0)
             {
                 var message = await ProcessMessageAsync(evnt.Records[0], context);
-                return await SendEmail(message, context);
+                if (await SendEmail(message, context))
+                {
+                    await Updatenotifiedfieldforfaci(Convert.ToInt32(message.attendee_pk), context);
+                    return true;
+                }
+                return false;
             }
             return false;
+        }
+
+        private async Task Updatenotifiedfieldforfaci(int obj_id, ILambdaContext context)
+        {
+            using (SqlCommand command = new SqlCommand("[/sysmail/Notification/notifyToFaci/update]", new SqlConnection(this.ConnectionString)))
+            {
+                command.Connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@obj_id", SqlDbType.Int, 4).Value = obj_id;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    context.Logger.LogLine($"Database Query Update for the attendance {obj_id}");
+                }
+                catch (Exception ex)
+                {
+                    context.Logger.LogLine($"Error in executing command {ex.Message}");
+                }
+                finally
+                {
+
+                    if (command.Connection.State != ConnectionState.Closed)
+                        command.Connection.Close();
+
+                }
+                await Task.CompletedTask;
+            }
         }
         private async Task<bool> SendEmail(Message output, ILambdaContext context)
         {
@@ -108,6 +142,7 @@ namespace ESC4_SQStoLambdatoSES
             if (DocElement != null && recepient != null)
             {
                 Message message = new Message();
+                message.attendee_pk = recepient.attendee_pk;
                 message.Subject = "New enrollee information";
                 message.IsBodyHtml = true;
 
@@ -135,10 +170,10 @@ namespace ESC4_SQStoLambdatoSES
         private async Task<XmlDocument> GetMailTemplatesFromS3(ILambdaContext context)
         {
             XmlDocument DocElement = new XmlDocument();
-            //var bucketName = S3BucketName;//"esc-04-mail-template";//;
-            //var fileName = S3FileName;// "tx_esc_04NotificationServices.xml";//;
-            var bucketName = "esc-04-mail-template";
-            var fileName = "tx_esc_04NotificationServices.xml";
+            var bucketName = S3BucketName;//"esc-04-mail-template";//;
+            var fileName = S3FileName;// "tx_esc_04NotificationServices.xml";//;
+            //var bucketName = "esc-04-mail-template";
+            //var fileName = "tx_esc_04NotificationServices.xml";
             context.Logger.LogLine($"Bucket Name : {bucketName}");
             context.Logger.LogLine($"File Name : {fileName}");
             try
@@ -166,7 +201,7 @@ namespace ESC4_SQStoLambdatoSES
         {
             get
             {
-                return System.Environment.GetEnvironmentVariable("S3_Bucket_Name");
+                return System.Environment.GetEnvironmentVariable("S3_Bucket_Name") ?? "esc-04-mail-template" ;
             }
         }
 
@@ -174,7 +209,15 @@ namespace ESC4_SQStoLambdatoSES
         {
             get
             {
-                return System.Environment.GetEnvironmentVariable("S3_File_Name");
+                return System.Environment.GetEnvironmentVariable("S3_File_Name") ?? "tx_esc_04NotificationServices.xml";
+            }
+        }
+
+        private string ConnectionString
+        {
+            get
+            {
+                return System.Environment.GetEnvironmentVariable("DB_CONNECTION") ?? "Data Source=172.17.34.228;Initial Catalog=tx_esc_04;user id=devteam;password=H0ll1ster~";
             }
         }
     }
