@@ -7,5 +7,4 @@
       "workingDirectory": ".\\bin\\$(Configuration)\\netcoreapp3.1"
     }
   }
-
 }
