@@ -27,6 +27,12 @@ namespace ESC4_SES_Service
             return SendEmail(input,context);
         }
 
+        /// <summary>
+        /// Send Emails
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         private bool SendEmail(EMailMessage input, ILambdaContext context)
         {
             try

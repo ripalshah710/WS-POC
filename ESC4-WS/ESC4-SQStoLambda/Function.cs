@@ -37,7 +37,7 @@ namespace ESC4_SQStoLambda
         /// This method is called for every Lambda invocation. This method takes in an SQS event object and can be used 
         /// to respond to SQS messages.
         /// </summary>
-        /// <param name="evnt"></param>
+        /// <param name="evnt">SQS Events</param>
         /// <param name="context"></param>
         /// <returns></returns>
         public async Task<string> FunctionHandler(SQSEvent evnt, ILambdaContext context)
