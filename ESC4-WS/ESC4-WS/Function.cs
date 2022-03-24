@@ -9,7 +9,7 @@ using Amazon.SQS;
 using Amazon.SQS.Model;
 using Newtonsoft.Json;
 
-// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET  class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace ESC4_WS
@@ -18,7 +18,7 @@ namespace ESC4_WS
     {
         
         /// <summary>
-        /// A simple function that takes a string and does a ToUpper
+        /// A simple function that takes a string and does a  ToUpper
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
