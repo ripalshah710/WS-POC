@@ -6,5 +6,6 @@ phases:
             dotnet: 3.1
     build:
         commands:
+            - cd ESC4-WS/ESC4-WS
             - dotnet build
 #            - dotnet test -c Release ./CodeBuildDotnetTestReportExample.Tests/CodeBuildDotnetTestReportExample.Tests.csproj
