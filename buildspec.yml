@@ -9,3 +9,5 @@ phases:
             - cd ESC4-WS/ESC4-WS
             - dotnet build
 #            - dotnet test -c Release ./CodeBuildDotnetTestReportExample.Tests/CodeBuildDotnetTestReportExample.Tests.csproj
+            - dotnet run
+
