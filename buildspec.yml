@@ -1,14 +1,53 @@
 version: 0.2
+phases:    
+  install:
+    runtime-versions:
+      dotnet: 3.1
+        
+  pre_build:
+    commands:
+      - cd ESC4-WS
+      - echo ESC4-SES-Service Restore started on `date`
+      - cd ESC4-SES-Service
+      - dotnet restore
+      - cd ..
+      - echo ESC4-SQStoLambda Restore started on `date`
+      - cd ESC4-SQStoLambda
+      - dotnet restore
+      - cd ..
+      - echo ESC4-SQStoLambdatoSES Restore started on `date`
+      - cd ESC4-SQStoLambdatoSES
+      - dotnet restore
+      - cd ..
+      - echo ESC4-WS Restore started on `date`
+      - cd ESC4-WS
+      - dotnet restore
 
-phases:
-    install:
-        runtime-versions:
-            dotnet: 3.1
-    build:
-        commands:
-            - cd ESC4-WS/ESC4-WS
-            - dotnet build
-#            - dotnet test -c Release ./CodeBuildDotnetTestReportExample.Tests/CodeBuildDotnetTestReportExample.Tests.csproj
-            - cd bin/Debug/netcoreapp3.1
-            - dotnet ESC4-WS.dll
+
+  build:
+    commands:
+      - cd ESC4-WS
+      - echo ESC4-SES-Service build started on `date`
+      - cd ESC4-SES-Service
+      - dotnet publish
+      - cd ..
+      - echo ESC4-SQStoLambda build started on `date` 
+      - cd ESC4-SQStoLambda
+      - dotnet publish
+      - cd ..
+      - echo ESC4-SQStoLambdatoSES build started on `date`
+      - cd ESC4-SQStoLambdatoSES
+      - dotnet publish
+      - cd ..
+      - echo ESC4-WS build started on `date`
+      - cd ESC4-WS         
+      - dotnet publish
+
+#artifacts:
+ # type: zip
+ # files:
+#    - '**/*'
+  #   - appspec.yml
+   #  - template.yaml
+    # - '**/*'
 
