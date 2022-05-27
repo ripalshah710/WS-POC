@@ -26,7 +26,8 @@ phases:
 
   build:
     commands:
-#      - cd ESC4-WS
+      - cd ..
+      - pwd
       - echo ESC4-SES-Service build started on `date`
       - cd ESC4-SES-Service
       - dotnet publish
